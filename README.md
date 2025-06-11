@@ -1,61 +1,57 @@
-# NOMAD AI - Compagnon de Micro-Business Local
+# NOMAD AI – Local Micro-Business Companion
 
-Une Progressive Web App (PWA) complète qui permet à n'importe qui de créer sa micro-entreprise locale de services en moins de 5 minutes grâce à une IA conversationnelle.
+A complete Progressive Web App (PWA) that allows anyone to launch a local service micro-business in under 5 minutes using a conversational AI assistant.
 
-## 🎯 Fonctionnalités principales
+## Main Features
 
-- **Onboarding intelligent avec assistant IA** : Chatbot qui génère un profil de micro-entreprise personnalisé
-- **Génération automatique de ressources** : Page de profil public, modèles de messages, tarifs recommandés
-- **Dashboard mobile-first** : Gestion des services, clients, et disponibilités
-- **Mode PWA** : Installable sur mobile, fonctionne hors-ligne
-- **Authentification sans mot de passe** : Magic links via Supabase
+- Smart onboarding with AI assistant: Chatbot that generates a personalized micro-business profile
+- Automatic resource generation: Public profile page, message templates, recommended pricing
+- Mobile-first dashboard: Manage services, clients, and availability
+- PWA mode: Installable on mobile, works offline
+- Passwordless authentication: Magic links via Supabase
 
-## 🔧 Tech Stack
+## Tech Stack
 
-- **Frontend** : React + TypeScript, Tailwind CSS, Vite
-- **Backend** : Supabase (auth, database, functions)
-- **PWA** : Service Worker, App Manifest
-- **Routing** : React Router
-- **Icons** : Lucide React
+- Frontend: React + TypeScript, Tailwind CSS, Vite
+- Backend: Supabase (auth, database, functions)
+- PWA: Service Worker, App Manifest
+- Routing: React Router
+- Icons: Lucide React
 
-## 🚀 Installation
+## Installation
 
-1. **Cloner le projet**
+1. Clone the project
 ```bash
 git clone <repository-url>
 cd nomad-ai-pwa
 ```
 
-2. **Installer les dépendances**
+2. Install dependencies
 ```bash
 npm install
 ```
 
-3. **Configuration Supabase**
-   - Créer un projet Supabase sur [supabase.com](https://supabase.com)
-   - Copier `.env.example` vers `.env`
-   - Remplir les variables d'environnement Supabase
+3. Supabase configuration
+   - Create a project on https://supabase.com
+   - Copy `.env.example` to `.env`
+   - Fill in the Supabase environment variables
 
-4. **Créer les tables de base de données**
-   - Dans le dashboard Supabase, aller dans SQL Editor
-   - Exécuter le contenu du fichier `supabase/migrations/create_initial_schema.sql`
+4. Create the database schema
+   - Go to the Supabase dashboard → SQL Editor
+   - Run the content of `supabase/migrations/create_initial_schema.sql`
 
-5. **Lancer en développement**
+5. Start the dev server
 ```bash
 npm run dev
 ```
 
-## 🔧 Configuration Supabase pour Production
+## Supabase Production Configuration
 
-### IMPORTANT : Configuration des URLs de redirection
+### IMPORTANT: Redirect URLs Setup
 
-Pour que l'authentification fonctionne correctement sur Netlify, vous DEVEZ configurer ces URLs dans votre dashboard Supabase :
-
-1. **Allez dans votre projet Supabase → Authentication → URL Configuration**
-
-2. **Site URL** : `https://hackaton-bolt.netlify.app`
-
-3. **Redirect URLs** - Ajoutez TOUTES ces URLs :
+1. Go to Supabase → Authentication → URL Configuration
+2. Site URL: `https://hackaton-bolt.netlify.app`
+3. Redirect URLs:
    ```
    https://hackaton-bolt.netlify.app/**
    https://hackaton-bolt.netlify.app/dashboard
@@ -65,111 +61,95 @@ Pour que l'authentification fonctionne correctement sur Netlify, vous DEVEZ conf
    http://localhost:5173/**
    ```
 
-4. **Sauvegardez les changements**
+## PWA Setup
 
-### Vérification de la configuration
+- Installable: Automatic install prompt on mobile
+- Offline-ready: Service worker caching
+- App-like: Splash screen, icons, standalone mode
 
-Après avoir mis à jour les URLs :
-- Attendez 1-2 minutes pour la propagation
-- Testez l'envoi d'un nouveau lien de connexion
-- Le lien devrait maintenant pointer vers `https://hackaton-bolt.netlify.app`
+## Database Structure
 
-## 📱 PWA Setup
+- users: User profiles with skills and availability
+- services: Services offered by each user
+- clients: Client address book
+- ai_conversations: History of AI assistant conversations
 
-L'application est configurée comme une PWA complète :
+## AI Assistant
 
-- **Installable** : Prompt d'installation automatique sur mobile
-- **Offline-ready** : Service Worker pour le cache
-- **App-like** : Écran de démarrage, icônes, mode standalone
+Uses a Q&A flow to:
+- Collect user information
+- Automatically generate service listings
+- Create the public business profile
+- Provide personalized recommendations
 
-## 🗃️ Structure de la base de données
+## Design System
 
-- **users** : Profils utilisateurs avec compétences et disponibilités
-- **services** : Services proposés par chaque utilisateur
-- **clients** : Carnet d'adresses des clients
-- **ai_conversations** : Historique des conversations avec l'IA
+- Colors: Purple (#8B5CF6), Teal (#14B8A6), Orange (#F97316)
+- Typography: Consistent size scale
+- Spacing: 8px grid system
+- Responsive: Mobile-first with optimized breakpoints
 
-## 🤖 IA Assistant
+## Security
 
-L'assistant IA utilise un système de questions-réponses pour :
-- Collecter les informations de l'utilisateur
-- Générer automatiquement les services
-- Créer le profil public
-- Fournir des conseils personnalisés
+- Row Level Security (RLS) enabled on all tables
+- Authentication via Supabase Auth
+- Policies: Users can only access their own data
+- Public profiles: Read-only service pages
 
-*Note : En production, connecter à l'API OpenAI pour des réponses intelligentes*
-
-## 🎨 Design System
-
-- **Couleurs** : Purple (#8B5CF6), Teal (#14B8A6), Orange (#F97316)
-- **Typographie** : Système de tailles cohérent
-- **Espacement** : Grille 8px
-- **Responsive** : Mobile-first avec breakpoints optimisés
-
-## 🔐 Sécurité
-
-- **Row Level Security (RLS)** activé sur toutes les tables
-- **Authentification** via Supabase Auth
-- **Politiques** : Accès uniquement aux données personnelles
-- **Profils publics** : Lecture seule pour les pages de services
-
-## 📦 Build & Déploiement
+## Build & Deployment
 
 ```bash
-# Build de production
 npm run build
-
-# Preview du build
 npm run preview
 ```
 
-Déployable sur :
-- **Vercel** (recommandé pour PWA)
-- **Netlify**
-- **Supabase Hosting**
+Deployable to:
+- Vercel
+- Netlify
+- Supabase Hosting
 
-## 🛠️ Développement
+## Development
 
-### Structure des composants
+### Component Structure
 ```
 src/
-├── components/         # Composants réutilisables
-│   ├── Layout/        # Header, Sidebar
-│   ├── UI/            # Button, Input, Card
-│   └── Chat/          # Chat interface
-├── contexts/          # React Context (Auth, Theme)
-├── hooks/             # Custom hooks
-├── lib/               # Utilitaires (Supabase client)
-├── pages/             # Pages principales
-└── App.tsx           # Configuration des routes
+├── components/
+│   ├── Layout/
+│   ├── UI/
+│   └── Chat/
+├── contexts/
+├── hooks/
+├── lib/
+├── pages/
+└── App.tsx
 ```
 
-### Ajout de nouvelles fonctionnalités
+### Adding New Features
 
-1. **Nouveaux services** : Étendre la table `services`
-2. **Analytics** : Ajouter une table `analytics`
-3. **Paiements** : Intégrer Stripe
-4. **Notifications** : Push notifications PWA
+- New services: Extend the `services` table
+- Analytics: Add a new `analytics` table
+- Payments: Integrate Stripe
+- Notifications: Add PWA push notifications
 
-## 📖 Utilisation
+## Usage
 
-1. **Inscription** : Magic link par email
-2. **Onboarding** : Questions de l'IA (5 min)
-3. **Profil généré** : Services et page publique créés
-4. **Partage** : URL personnalisée `/profile/username`
-5. **Gestion** : Dashboard pour clients et services
+1. Sign up: Magic link by email
+2. Onboarding: AI assistant asks questions (~5 min)
+3. Profile generated: Services and public page created
+4. Share: Personalized URL at `/profile/username`
+5. Manage: Dashboard for clients and services
 
-## 🤝 Contribution
+## Contributing
 
-1. Fork le projet
-2. Créer une branche feature
-3. Commit les changements
-4. Ouvrir une Pull Request
+1. Fork the project
+2. Create a feature branch
+3. Commit your changes
+4. Open a Pull Request
 
-## 📄 License
+## License
 
-MIT License - voir le fichier LICENSE pour plus de détails.
+MIT License – see the LICENSE file for details.
 
 ---
 
-**NOMAD AI** - Libérez votre potentiel entrepreneurial ! 🚀
+NOMAD AI – Unleash your entrepreneurial potential!
