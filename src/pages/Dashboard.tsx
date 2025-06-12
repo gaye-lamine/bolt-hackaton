@@ -5,11 +5,14 @@ import { Header } from '../components/Layout/Header';
 import { Sidebar } from '../components/Layout/Sidebar';
 import { Card } from '../components/UI/Card';
 import { Button } from '../components/UI/Button';
+import { BoltBadge } from '../components/UI/BoltBadge';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../contexts/ThemeContext';
 
 export const Dashboard = () => {
   const { user } = useAuth();
+  const { isDark } = useTheme();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [stats, setStats] = useState({
     totalServices: 0,
@@ -216,6 +219,11 @@ export const Dashboard = () => {
     return (
       <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900">
         <Header />
+        <BoltBadge 
+          variant={isDark ? 'white' : 'black'} 
+          position="top-right" 
+          size="md"
+        />
         <div className="flex items-center justify-center min-h-[calc(100vh-4rem)]">
           <Card className="max-w-md text-center">
             <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
@@ -242,6 +250,11 @@ export const Dashboard = () => {
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900">
       <Header onMenuClick={() => setSidebarOpen(true)} showMenu />
+      <BoltBadge 
+        variant={isDark ? 'white' : 'black'} 
+        position="bottom-right" 
+        size="md"
+      />
       
       <div className="flex">
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />

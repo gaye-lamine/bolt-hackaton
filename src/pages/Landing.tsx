@@ -3,11 +3,31 @@ import { ArrowRight, Sparkles, Clock, Users, Smartphone, AlertTriangle, Star, Sh
 import { Link } from 'react-router-dom';
 import { Button } from '../components/UI/Button';
 import { Card } from '../components/UI/Card';
+import { BoltBadge } from '../components/UI/BoltBadge';
 import { isSupabaseConfigured } from '../lib/supabase';
+import { useTheme } from '../contexts/ThemeContext';
 
 export const Landing = () => {
+  const { isDark } = useTheme();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-purple-50/30 dark:from-neutral-800 dark:via-neutral-800 dark:to-purple-900/10">
+      {/* Bolt.new Badge */}
+      <BoltBadge 
+        variant={isDark ? 'white' : 'black'} 
+        position="top-right" 
+        size="md"
+        className="hidden sm:block"
+      />
+      
+      {/* Mobile Bolt Badge */}
+      <BoltBadge 
+        variant={isDark ? 'white' : 'black'} 
+        position="top-right" 
+        size="sm"
+        className="block sm:hidden"
+      />
+
       {/* Configuration Warning */}
       {!isSupabaseConfigured && (
         <div className="bg-yellow-100 dark:bg-yellow-900/20 border-b border-yellow-200 dark:border-yellow-800">
@@ -203,6 +223,45 @@ export const Landing = () => {
           )}
         </div>
       </div>
+
+      {/* Footer with Bolt Badge */}
+      <footer className="bg-neutral-900 dark:bg-neutral-950 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-6 md:mb-0">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mr-3">
+                  <span className="text-white font-bold text-lg">N</span>
+                </div>
+                <span className="text-xl font-bold font-display">NOMAD AI</span>
+              </div>
+              <p className="text-neutral-400 max-w-md">
+                Votre compagnon IA pour créer et développer votre micro-entreprise locale en toute simplicité.
+              </p>
+            </div>
+            
+            <div className="flex flex-col items-center md:items-end">
+              <div className="mb-4">
+                <a
+                  href="https://bolt.new/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-neutral-400 hover:text-white transition-colors"
+                >
+                  <img
+                    src="/logotext_poweredby_360w.png"
+                    alt="Powered by Bolt.new"
+                    className="h-8 object-contain"
+                  />
+                </a>
+              </div>
+              <p className="text-sm text-neutral-500">
+                © 2025 NOMAD AI. Tous droits réservés.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
