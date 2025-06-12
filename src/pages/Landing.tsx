@@ -72,7 +72,7 @@ export const Landing = () => {
                   </Button>
                 </Link>
               ) : (
-                <Button size="lg" className="px-8 py-4 text-lg" disabled>
+                <Button size="lg" className="px-8 py-4 text-lg bg-purple-600 hover:bg-purple-700 text-white border-0" disabled>
                   Configuration requise
                   <AlertTriangle className="ml-2" size={20} />
                 </Button>
@@ -205,7 +205,7 @@ export const Landing = () => {
             <Link to="/auth">
               <Button 
                 size="lg" 
-                className="px-8 py-4 text-lg bg-white text-purple-600 hover:bg-neutral-50 border-0 shadow-strong hover:shadow-medium transition-all duration-200 font-semibold"
+                className="px-8 py-4 text-lg bg-purple-600 hover:bg-purple-700 text-white border-0 shadow-strong hover:shadow-medium transition-all duration-200"
               >
                 Créer mon entreprise gratuitement
                 <ArrowRight className="ml-2" size={20} />
@@ -214,7 +214,7 @@ export const Landing = () => {
           ) : (
             <Button 
               size="lg" 
-              className="px-8 py-4 text-lg bg-white text-purple-600 hover:bg-neutral-50 border-0 shadow-strong" 
+              className="px-8 py-4 text-lg bg-purple-600 hover:bg-purple-700 text-white border-0 shadow-strong" 
               disabled
             >
               Configuration Supabase requise
