@@ -66,7 +66,7 @@ export const Landing = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               {isSupabaseConfigured ? (
                 <Link to="/auth">
-                  <Button size="lg" className="px-8 py-4 text-lg shadow-strong hover:shadow-medium">
+                  <Button size="lg" className="px-8 py-4 text-lg shadow-strong hover:shadow-medium bg-purple-600 hover:bg-purple-700 text-white border-0">
                     Commencer maintenant
                     <ArrowRight className="ml-2" size={20} />
                   </Button>
@@ -205,7 +205,7 @@ export const Landing = () => {
             <Link to="/auth">
               <Button 
                 size="lg" 
-                className="px-8 py-4 text-lg bg-white text-purple-600 hover:bg-neutral-50 border-0 shadow-strong hover:shadow-medium transition-all duration-200"
+                className="px-8 py-4 text-lg bg-white text-purple-600 hover:bg-neutral-50 border-0 shadow-strong hover:shadow-medium transition-all duration-200 font-semibold"
               >
                 Créer mon entreprise gratuitement
                 <ArrowRight className="ml-2" size={20} />
